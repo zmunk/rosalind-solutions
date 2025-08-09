@@ -1,14 +1,10 @@
-import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset
 
-if "--dataset" in sys.argv:
-    inp = get_dataset(__file__)
-    n, k = list(map(int, inp.split(" ")))
+if __name__ == "__main__":
+    inp = (get_dataset(__file__) or "21 7").split()
+    n, k = int(inp[0]), int(inp[1])
 
-else:
-    n, k = 21, 7
-
-res = 1
-for i in range(n, n - k, -1):
-    res = (res * i) % int(1e6)
-print(res)
+    res = 1
+    for i in range(n, n - k, -1):
+        res = (res * i) % int(1e6)
+    print(res)

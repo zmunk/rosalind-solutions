@@ -1,7 +1,7 @@
 import sys
 from collections import deque
 from bisect import bisect_left
-from splc import get_dataset
+from utils import get_dataset
 
 
 def get_longest_subsequence(seq, increasing=True, output="list", verbose=0):
@@ -121,10 +121,7 @@ def cyan(s):
 # cyan_ =    lambda s: f'\033[1;36m{s}\033[0m'
 
 if __name__ == "__main__":
-    if "--dataset" in sys.argv:
-        inp = get_dataset(__file__)
-    else:
-        inp = sample
+    inp = get_dataset(__file__) or sample
     # print(inp)
     seq = list(map(int, inp.split("\n")[1].split()))
     # seq = [8, 2, 1, 6, 5, 7, 4, 3, 9]

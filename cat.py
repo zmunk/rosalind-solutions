@@ -1,5 +1,4 @@
-import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset, parse_dataset
 from functools import cache
 from revp import complement_rna_dict
 
@@ -54,8 +53,5 @@ def num_options(s):
 
 
 if __name__ == "__main__":
-    if "--dataset" in sys.argv:
-        inp = parse_dataset(get_dataset(__file__))[0]
-    else:
-        inp = "UAGCGUGAUCAC"
+    inp = parse_dataset(get_dataset(__file__) or "UAGCGUGAUCAC")[0]
     print(num_options(inp) % int(1e6))

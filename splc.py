@@ -1,6 +1,7 @@
 from pathlib import Path
 from orf import get_codons, get_rna
 from codonlib import aa_dict
+from utils import get_dataset, parse_dataset
 
 
 def remove_intron(dna, intron):
@@ -29,28 +30,6 @@ def convert_dna_to_protein(dna):
     return res
 
 
-def parse_dataset(data):
-    lines = data.split("\n")
-    res = []
-    curr = ""
-    for line in lines:
-        if line[0] == ">":
-            if len(curr) > 0:
-                res.append(curr)
-            curr = ""
-            continue
-
-        curr += line
-
-    res.append(curr)
-    return res
-
-
-def get_dataset(filename):
-    file_id = Path(filename).stem
-    return open(Path(f"~/Downloads/rosalind_{file_id}.txt").expanduser()).read().strip()
-
-
 sample = """
 >Rosalind_10
 ATGGTCTACATAGCTGACAAACAGCACGTAGCAATCGGTCGAATCTCGAGAGGCATATGGTCACATGATCGGTCGAGCGTGTTTCAAAGTTTGCGCCTAG
@@ -71,4 +50,5 @@ def main(inp):
 
 if __name__ == "__main__":
     assert main(sample) == "MVYIADKQHVASREAYGHMFKVCA"
-    print(main(get_dataset(__file__)))
+    if dataset := get_dataset(__file__):
+        print(main(dataset))

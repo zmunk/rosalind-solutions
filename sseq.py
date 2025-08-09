@@ -1,5 +1,5 @@
 import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset, parse_dataset
 
 sample = """
 >Rosalind_14

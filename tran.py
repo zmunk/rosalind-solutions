@@ -1,5 +1,5 @@
 import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset, parse_dataset
 
 sample = """
 >Rosalind_0209
@@ -11,12 +11,7 @@ GGTACGAGTGTTCCTTTGGGT
 """.strip()
 
 if __name__ == "__main__":
-    if "--dataset" in sys.argv:
-        inp = get_dataset(__file__)
-    else:
-        inp = sample
-
-    inp = parse_dataset(inp)
+    inp = parse_dataset(get_dataset(__file__) or sample)
 
     s1, s2 = inp
 

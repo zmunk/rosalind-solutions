@@ -1,5 +1,4 @@
-import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset
 
 sample = """
 10
@@ -12,10 +11,7 @@ sample = """
 """.strip()
 
 if __name__ == "__main__":
-    if "--dataset" in sys.argv:
-        inp = get_dataset(__file__)
-    else:
-        inp = sample
+    inp = get_dataset(__file__) or sample
 
     inp = inp.split("\n")
     n_nodes = int(inp[0])

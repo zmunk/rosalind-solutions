@@ -1,21 +1,11 @@
 from math import factorial
-import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset, parse_dataset
 
 sample = """
 >Rosalind_23
 AGCUAGUCAU
 """.strip()
 
-
-if "--dataset" in sys.argv:
-    inp = get_dataset(__file__)
-    s = parse_dataset(inp)[0]
-else:
-    s = sample.split()[1]
-print(factorial(s.count("A")) * factorial(s.count("G")))
-# print(inp)
-# print(inp.split()[1])
-# strings = parse_dataset(inp)
-# else:
-# strings = sample.split("\n")[1::2]
+if __name__ == "__main__":
+    s = parse_dataset(get_dataset(__file__) or sample)[0]
+    print(factorial(s.count("A")) * factorial(s.count("G")))

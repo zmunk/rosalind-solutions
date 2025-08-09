@@ -1,5 +1,5 @@
 import sys
-from pathlib import Path
+from utils import get_dataset
 
 complement_dna_dict = {
     "A": "T",
@@ -30,12 +30,10 @@ def complement_rna(s):
     return "".join(map(lambda x: complement_rna_dict[x], s))
 
 
-sample = "TCAATGCATGCGGGTCTATATGCAT"
-
-
-def get_dataset():
-    file_id = Path(__file__).stem
-    return open(Path(f"~/Downloads/rosalind_{file_id}.txt").expanduser()).read().strip()
+sample = """
+>
+TCAATGCATGCGGGTCTATATGCAT
+""".strip()
 
 
 def format_dataset(raw):
@@ -44,10 +42,7 @@ def format_dataset(raw):
 
 if __name__ == "__main__":
     debugging = "--debug" in sys.argv
-    if "--dataset" in sys.argv:
-        s = format_dataset(get_dataset())
-    else:
-        s = sample
+    s = format_dataset(get_dataset(__file__) or sample)
     for i in range(1, len(s) - 2):
         left = i
         right = i + 1

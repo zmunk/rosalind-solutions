@@ -2,7 +2,7 @@ import sys
 import hashlib
 from collections import defaultdict
 from revp import complement_dna
-from splc import get_dataset, parse_dataset
+from utils import get_dataset, parse_dataset
 from orf import cyan_bold, red_bold
 
 

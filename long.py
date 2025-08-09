@@ -1,5 +1,4 @@
-import sys
-from splc import get_dataset, parse_dataset
+from utils import get_dataset, parse_dataset
 
 sample = """
 >Rosalind_56
@@ -13,11 +12,7 @@ GCCGGAATAC
 """.strip()
 
 if __name__ == "__main__":
-    if "--dataset" in sys.argv:
-        inp = get_dataset(__file__)
-        strings = parse_dataset(inp)
-    else:
-        strings = sample.split("\n")[1::2]
+    strings = parse_dataset(get_dataset(__file__) or sample)
 
     # find shortest unique prefix length
     prefix_len = 0
