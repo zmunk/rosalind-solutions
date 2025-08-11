@@ -1,0 +1,20 @@
+#!/bin/bash
+
+# set -u
+
+if [ $# -lt 1 ]; then
+  cat << EOF
+Usage: ./new <problem-id>
+EOF
+  exit
+fi
+
+filename="$1.py"
+
+if [ -f "$filename" ]; then
+  echo "$filename already exists"
+  exit 1
+fi
+
+cp template.py "$filename"
+echo "$filename created."
