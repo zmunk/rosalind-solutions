@@ -297,10 +297,7 @@ def optimal_steps(diff, inv_diff) -> list[tuple]:
     return res
 
 
-def main(a, b, verbose=0):
-    if verbose > 0:
-        print(a)
-        print(b)
+def get_optimal_steps(a, b):
     posa = {}
     for i, n in enumerate(a):
         posa[n] = i
@@ -320,11 +317,20 @@ def main(a, b, verbose=0):
     for i, n in enumerate(a):
         inv_diff.append(posb[n] - i)
 
+    swaps = optimal_steps(bdiff, inv_diff)
+
+    return swaps, bdiff
+
+
+def main(a, b, verbose=0):
+    if verbose > 0:
+        print(a)
+        print(b)
+
     def fmt(s):
         return format(s, "<" + str(cell_width * len(a)))
 
-    swaps = optimal_steps(bdiff, inv_diff)
-    diff = bdiff
+    swaps, diff = get_optimal_steps(a, b)
     if verbose > 0:
         display(diff)
     for i, swap in enumerate(swaps, start=1):
